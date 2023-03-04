@@ -29,3 +29,11 @@ PlayBtn.addEventListener("click", () => {
     playMusic();
   }
 });
+
+// Music Collections
+const MusicCollection = [
+  {
+    title: "The Godfather",
+    artist: "J.R.R. Tolkien",
+  },
+];
