@@ -69,12 +69,18 @@ console.log(songIndex);
 // previous song
 function prevSong() {
   songIndex--;
+  if (songIndex < 0) {
+    songIndex = musicColl.length - 1;
+  }
   loadSong(musicColl[songIndex]);
   console.log(songIndex);
   playMusic();
 } // next song
 function nextSong() {
   songIndex++;
+  if (songIndex > musicColl.length - 1) {
+    songIndex = 0;
+  }
   loadSong(musicColl[songIndex]);
   console.log(songIndex);
   playMusic();
