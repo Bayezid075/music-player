@@ -7,6 +7,8 @@ const artist = document.getElementById("artist");
 const title = document.getElementById("title");
 const progressContainer = document.getElementById("progresscontainer");
 const progress = document.getElementById("progress");
+const currenttimeEl = document.getElementById("current-time");
+const durationTime = document.getElementById("duration-time");
 
 // music collection
 const musicColl = [
@@ -98,6 +100,33 @@ function updateProgress(e) {
     const { duration, currentTime } = e.srcElement;
     const progressPercent = (currentTime / duration) * 100;
     progress.style.width = `${progressPercent}%`;
+    // get minite
+    let durationMinite = Math.floor(duration / 60);
+    // get seconds
+    let durationSeconds = Math.floor(duration % 60);
+
+    if (durationSeconds < 10) {
+      durationSeconds = `0${durationSeconds}`;
+    }
+
+    // avoid delay NaN
+    if (durationSeconds) {
+      durationTime.textContent = `${durationMinite}:${durationSeconds}`;
+    }
+
+    // claculate current time
+
+    let currentTimeMinite = Math.floor(currentTime / 60);
+    // get seconds
+    let currentTimeSeconds = Math.floor(currentTime % 60);
+
+    if (currentTimeSeconds < 10) {
+      currentTimeSeconds = `0${currentTimeSeconds}`;
+    }
+    console.log(`${currentTimeMinite}:${currentTimeSeconds}`);
+    if (currentTimeSeconds) {
+      currenttimeEl.textContent = `${currentTimeMinite}: ${currentTimeSeconds}`;
+    }
   }
 }
 
