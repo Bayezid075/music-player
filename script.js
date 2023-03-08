@@ -70,7 +70,7 @@ function loadSong(song) {
 }
 // song index
 let songIndex = 2;
-console.log(songIndex);
+
 // previous song
 function prevSong() {
   songIndex--;
@@ -123,13 +123,24 @@ function updateProgress(e) {
     if (currentTimeSeconds < 10) {
       currentTimeSeconds = `0${currentTimeSeconds}`;
     }
-    console.log(`${currentTimeMinite}:${currentTimeSeconds}`);
+
     if (currentTimeSeconds) {
       currenttimeEl.textContent = `${currentTimeMinite}: ${currentTimeSeconds}`;
     }
   }
 }
 
+function setProgress(e) {
+  const progressBarWidth = this.clientWidth;
+
+  const offx = e.offsetX;
+  const { duration } = music;
+
+  music.currentTime = (offx / progressBarWidth) * duration;
+}
+
 PrevBtn.addEventListener("click", prevSong);
 NextBtn.addEventListener("click", nextSong);
 music.addEventListener("timeupdate", updateProgress);
+music.addEventListener("ended", nextSong);
+progressContainer.addEventListener("click", setProgress);
